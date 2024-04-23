@@ -15,9 +15,6 @@ jobs:
       with:
         path: main-repo
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    
-    - name: Run a one-line script
-      run: 
 
     - name: Get Modules
       uses: actions/checkout@v3
