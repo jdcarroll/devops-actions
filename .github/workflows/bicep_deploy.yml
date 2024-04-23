@@ -12,8 +12,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - uses: actions/checkout@v3
-      with:
-        path: main-repo
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 
     - name: Get Modules
@@ -23,4 +21,4 @@ jobs:
         path: modules
 
     - name: Run Custom Bicep Action
-      uses: main-repo/bicep-deploy
+      uses: ./bicep-deploy
