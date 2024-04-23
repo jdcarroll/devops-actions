@@ -3,6 +3,11 @@ name: Bicep Deploy
 # Controls when the action will run. This workflow can be triggered manually from the GitHub UI.
 on:
   workflow_dispatch:
+    inputs:
+      env_variables_path:
+        description: This is the file that points to the loades env variables for the required deployment
+        required: true
+        default: env.json
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,7 +29,7 @@ jobs:
     - name: Load Tags
       uses: ./load_tags
       with:
-        jsonFilePath: env.json
+        jsonFilePath: ${ inputs.env_variables_path }
 
     - name: Test Usage
       shell: bash
