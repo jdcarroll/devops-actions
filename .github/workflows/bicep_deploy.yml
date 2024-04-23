@@ -1,5 +1,9 @@
 name: Bicep Deploy
 
+permissions:
+  id-token: write
+  contents: read
+
 # Controls when the action will run. This workflow can be triggered manually from the GitHub UI.
 on:
   workflow_dispatch:
