@@ -20,3 +20,6 @@ jobs:
     - name: Display Contents of Workspace
       shell: bash
       run: ls -ltra; ls -ltra modules
+
+    - name: Load Tags
+      uses: ./load_tags

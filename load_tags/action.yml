@@ -1,0 +1,27 @@
+name: 'Convert JSON to Environment Variables'
+description: 'Reads a JSON file and sets its contents as environment variables'
+inputs:
+  jsonFilePath:
+    description: 'Path to the JSON file'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Install jq
+      run: sudo apt-get update && sudo apt-get install -y jq
+      shell: bash
+
+    - name: Convert JSON to Environment Variables
+      run: |
+        while IFS="=" read -r key value
+        do
+          echo "Setting $key to $value"
+          echo "$key=$value" >> $GITHUB_ENV
+        done < <(jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" "${{ inputs.jsonFilePath }}")
+      shell: bash
+      env:
+        jsonFilePath: ${{ inputs.jsonFilePath }}
+
+    - name: show env
+      shell: bash
+      run: env
