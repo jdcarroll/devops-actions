@@ -60,7 +60,7 @@ runs:
       shell: bash
       run: |
         if [[ -z "${{ inputs.bicep_parameters }}" ]]; then
-          echo "PARAMS=''" >> $GITHUB_ENV
+          echo "PARAMS= " >> $GITHUB_ENV
         else
           echo "PARAMS=--parameters @${{ inputs.bicep_parameters }}" >> $GITHUB_ENV
         fi
