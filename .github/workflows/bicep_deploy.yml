@@ -14,11 +14,8 @@ jobs:
     - uses: actions/checkout@v3
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 
-    - name: Get Modules
-      uses: actions/checkout@v3
-      with:
-        repository: jdcarroll/devops-modules
-        path: modules
-
     - name: Run Custom Bicep Action
       uses: ./bicep-deploy
+
+    - name: Display Contents of Workspace
+      run: ls -ltra
