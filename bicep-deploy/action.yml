@@ -52,7 +52,7 @@ runs:
 
     - name: Create or Update Resource Group
       run: |
-          az group create --name ${{ inputs.resourceGroupName }} --location ${{ inputs.resourceGroupLocation }}
+          az group create --name ${{ inputs.resourceGroupName }} --location '${{ inputs.resourceGroupLocation }}'
       shell: bash
 
     - name: Prepare deployment command
