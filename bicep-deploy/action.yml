@@ -50,11 +50,25 @@ runs:
           tenant-id: ${{ inputs.AZURE_TENANT_ID }}
           subscription-id: ${{ inputs.AZURE_SUBSCRIPTION_ID }}
 
-    # - name: Deploy Azure Bicep template
-    #   shell: bash
-    #   run: |
-    #     az deployment group create \
-    #       --name ExampleDeployment \
-    #       --resource-group ${{ env.AZURE_RESOURCE_GROUP }} \
-    #       --template-file ./path/to/your/template.bicep \
-    #       --parameters @./path/to/your/parameters.json
+    - name: Create or Update Resource Group
+      run: |
+          az group create --name ${{ inputs.resourceGroupName }} --location ${{ inputs.resourceGroupLocation }}
+      shell: bash
+
+    - name: Prepare deployment command
+      id: prepare
+      shell: bash
+      run: |
+        if [[ -z "${{ inputs.bicep_parameters }}" ]]; then
+          echo "PARAMS=''" >> $GITHUB_ENV
+        else
+          echo "PARAMS=--parameters @${{ inputs.bicep_parameters }}" >> $GITHUB_ENV
+        fi
+
+    - name: Deploy Azure Bicep template
+      shell: bash
+      run: |
+        az deployment group create \
+          --name ExampleDeployment \
+          --resource-group ${{ inputs.resourceGroupName }} \
+          --template-file ${{ inputs.main_bicep_file_path }} $PARAMS
