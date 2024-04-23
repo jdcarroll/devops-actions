@@ -25,3 +25,9 @@ jobs:
       uses: ./load_tags
       with:
         jsonFilePath: env.json
+
+    - name: Test Usage
+      shell: bash
+      run: |
+        echo "We are testing that the load tags action allows for variables to persist"
+        echo $DUMBY_NAME
