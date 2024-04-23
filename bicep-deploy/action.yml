@@ -1,0 +1,36 @@
+name: Bicep Deploy
+description: Used as the Standard Action to deploy bicep into Azure
+inputs:
+  main_bicep_file_path:
+    description: This is the bicep file that will be deployed. it references all the Bicep Modules.
+    required: true
+    default: main.bicep
+  parameters:
+    description: Path to parameters file (leave empty if not used)
+    required: false
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+runs:
+  using: composite
+  # Steps represent a sequence of tasks that will be executed as part of the job
+  steps:
+    
+    - name: Get Modules
+      uses: actions/checkout@v3
+      with:
+        repository: jdcarroll/devops-modules
+        path: modules
+
+    - name: Prepare modules to be used by Action
+      shell: bash
+      run: |
+        ls -ltra modules
+
+    # - name: Deploy Azure Bicep template
+    #   shell: bash
+    #   run: |
+    #     az deployment group create \
+    #       --name ExampleDeployment \
+    #       --resource-group ${{ env.AZURE_RESOURCE_GROUP }} \
+    #       --template-file ./path/to/your/template.bicep \
+    #       --parameters @./path/to/your/parameters.json

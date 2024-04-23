@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Bicep Deploy
 
 # Controls when the action will run. This workflow can be triggered manually from the GitHub UI.
 on:
@@ -25,5 +25,5 @@ jobs:
         repository: jdcarroll/devops-modules
         path: modules
 
-    - name: Show Workspace
-      run: ls -ltra
+    - name: Run Custom Bicep Action
+      uses: ./bicep-deploy
