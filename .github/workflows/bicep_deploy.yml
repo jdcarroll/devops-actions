@@ -23,3 +23,5 @@ jobs:
 
     - name: Load Tags
       uses: ./load_tags
+      with:
+        jsonFilePath: env.json
