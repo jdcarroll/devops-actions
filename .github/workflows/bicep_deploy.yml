@@ -19,4 +19,4 @@ jobs:
 
     - name: Display Contents of Workspace
       shell: bash
-      run: ls -ltra
+      run: ls -ltra; ls-ltra modules
