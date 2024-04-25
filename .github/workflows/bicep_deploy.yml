@@ -8,17 +8,6 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      env_variables_path:
-        description: This is the file that points to the loades env variables for the required deployment
-        required: true
-        default: env.json
-      main_bicep_file_path:
-        description: This is the bicep file that will be deployed. it references all the Bicep Modules.
-        required: true
-        default: main.bicep
-      bicep_parameters:
-        description: Path to parameters file (leave empty if not used)
-        required: false
       resourceGroupName:
         description: The name of the Resource Group that you are going to create.
         required: true
