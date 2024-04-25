@@ -16,4 +16,4 @@ runs:
     - name: Run Greeting script
       shell: bash
       run: |
-        python greet.py ${{ inputs.name }}
+        python helloWorld/greet.py ${{ inputs.name }}
