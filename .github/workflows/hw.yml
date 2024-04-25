@@ -1,0 +1,19 @@
+name: Hello World
+
+on:
+  workflow_dispatch:
+    inputs:
+      Name:
+        description: Name
+        required: true
+
+jobs:
+  TestPython:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Python
+        uses: ./helloWorld
+        with:
+          name: ${{ inputs.Name }}
+
+      

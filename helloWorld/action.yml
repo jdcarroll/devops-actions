@@ -1,0 +1,19 @@
+name: python Hello World
+description: 'This is a test action to manipulate data types coming into github actions'
+inputs:
+  name:
+    description: name or names of the people to greet
+
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+      
+    - name: Run Greeting script
+      shell: bash
+      run: |
+        python greet.py ${{ inputs.name }}

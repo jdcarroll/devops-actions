@@ -16,7 +16,7 @@ jobs:
   DestroyResourceGroup:
     runs-on: ubuntu-latest
     steps:
-      - name: Run Custom Bicep Action
+      - name: Run Bicep Deploy
         uses: ./bicep-deploy
         with:
           resourceGroupName: ${{ inputs.resourceGroupName }}
