@@ -1,0 +1,27 @@
+name: Delete Named Resource Group
+description: 'This action will take a resource group name and delete it from the azure platform'
+inputs:
+  resourceGroupName:
+    description: 'The name of the resource group that you want deleted'
+    required: true
+  CLIENT_ID:
+    description: this is the client id to login to azure
+  AZURE_TENANT_ID:
+    description: tenant
+  AZURE_SUBSCRIPTION_ID:
+    description: the sub id
+
+runs:
+  using: composite
+  steps:
+    - name: 'Az CLI login'
+      uses: azure/login@v1
+      with:
+          client-id: ${{ inputs.CLIENT_ID }}
+          tenant-id: ${{ inputs.AZURE_TENANT_ID }}
+          subscription-id: ${{ inputs.AZURE_SUBSCRIPTION_ID }}
+    
+    - name: 'Delete Resource Group'
+      shell: bash
+      run: |
+        az group delete --name ${{ inputs.resourceGroupName }} --yes --no-wait
