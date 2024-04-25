@@ -11,6 +11,9 @@ jobs:
   TestPython:
     runs-on: ubuntu-latest
     steps:
+      - name: Clone down Example Repository 
+        uses: actions/checkout@v3
+        
       - name: Run Python
         uses: ./helloWorld
         with:
