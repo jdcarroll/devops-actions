@@ -39,11 +39,11 @@ runs:
         repository: jdcarroll/devops-modules
         path: modules
 
-    - name: Load tags
-      if: ${{ inputs.jsonFilePath != no-file }}
-      uses: jdcarroll/devops-modules/load-tags@main
-      with:
-        jsonFilePath: ${{ inputs.jsonFilePath }}
+    # - name: Load tags
+    #   if: ${{ inputs.jsonFilePath != no-file }}
+    #   uses: jdcarroll/devops-modules/load-tags@main
+    #   with:
+    #     jsonFilePath: ${{ inputs.jsonFilePath }}
 
     - name: 'Az CLI login'
       uses: azure/login@v1
