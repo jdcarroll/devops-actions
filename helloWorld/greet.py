@@ -1,6 +1,5 @@
 import sys
 
-for item in sys.argv:
-    data = item.split(',')
+args = sys.argv[2:]
 
-print(data)
+print(sys.arv)
