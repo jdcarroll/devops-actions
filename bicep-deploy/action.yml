@@ -16,6 +16,7 @@ inputs:
     required: true
   tags_file_path:
     description: The organizational required tags (this has its own action will read the json file and create env variables)
+    default: no-file
   CLIENT_ID:
     description: this is the client id to login to azure
   AZURE_TENANT_ID:
@@ -38,10 +39,11 @@ runs:
         repository: jdcarroll/devops-modules
         path: modules
 
-    - name: Prepare modules to be used by Action
-      shell: bash
-      run: |
-        ls -ltra modules
+    - name: Load tags
+      if: ${{ inputs.jsonFilePath != no-file }}
+      uses: jdcarroll/devops-modules/load-tags@main
+      with:
+        jsonFilePath: ${{ inputs.jsonFilePath }}
 
     - name: 'Az CLI login'
       uses: azure/login@v1
