@@ -6,7 +6,7 @@ def list_resource_groups():
     credential = DefaultAzureCredential()
     
     # Create a client instance
-    subscription_id = 'ebaa6d0f-5c55-42e6-8326-604b3348451f'  # replace with your subscription ID
+    subscription_id = ''  # replace with your subscription ID
     client = ResourceManagementClient(credential, subscription_id)
     
     # List resource groups
